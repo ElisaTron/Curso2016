@@ -93,6 +93,7 @@ namespace Servicios
     private bool ValidarUsuario(Usuario user)
     {
       //  TODO verificar que el login no este repetido
+      // HOla
       //  TODO Asegurar que no se generen dos usuarios para un mismo Empleado
       return true;
     }
