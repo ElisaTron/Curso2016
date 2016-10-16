@@ -259,7 +259,7 @@ namespace TestDatabase
 #if PASO_6
       //  Agregamos info de contacto
       //
-      Persona persona = ctx.Personas.Where(per => per.Apellidos == "Thedy").FirstOrDefault() ;     //  TODO Traer una Persona desde la base de datos
+      Persona persona = ctx.Personas.Where(per => per.Apellidos == "Tron").FirstOrDefault() ;     //  TODO Traer una Persona desde la base de datos
       List<TipoContacto> tipos = ctx.TiposContacto.ToList();
 
       if (persona != null)
@@ -295,7 +295,7 @@ namespace TestDatabase
 
               nuevoContacto.Dato = dato;
               nuevoContacto.Comentario = string.IsNullOrWhiteSpace(comentario) ? null : comentario;
-              nuevoContacto.Tipo = tipos[numOpcion];
+              nuevoContacto.Tipo = tipos[numOpcion-1];
 
               persona.InfoContacto.Add(nuevoContacto);
             }
@@ -332,14 +332,14 @@ namespace TestDatabase
 #if PASO_7
       //  Agregamos Empleado asociado a Persona
       //
-      Persona persona = ctx.Personas.FirstOrDefault(per => per.Apellidos == "Thedy");
+      Persona persona = ctx.Personas.FirstOrDefault(per => per.Apellidos == "Tron");
 
       if (persona != null)
       {
         Empleado nuevo = new Empleado();
 
         nuevo.Persona = persona;
-        nuevo.Legajo = "167055";
+        nuevo.Legajo = "36588";
         nuevo.CUIT = "20-18339577-8";
         nuevo.FechaIngreso = new DateTime(1986, 12, 9);
 
@@ -351,11 +351,11 @@ namespace TestDatabase
 #if PASO_8
       //  Creamos un usuario y utilizamos el servicio para crearlo con su password
       //
-      Empleado empleado = ctx.Empleados.FirstOrDefault(emp => emp.Legajo == "167055");
+      Empleado empleado = ctx.Empleados.FirstOrDefault(emp => emp.Legajo == "36588");
       Usuario user = new Usuario();
       SecurityServices seg = new SecurityServices();
 
-      user.Login = "ethedy1";
+      user.Login = "elisatron";
       user.Empleado = empleado;
       user.Blocked = false;
 
@@ -365,7 +365,8 @@ namespace TestDatabase
       }
       else
       {
-        Console.WriteLine("Error al crear el usuario");
+
+                Console.WriteLine("Error al crear el usuario");
       }
 
 #endif

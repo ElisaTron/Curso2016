@@ -79,7 +79,14 @@ namespace Servicios
     /// <returns></returns>
     public Usuario LoginUsuario(string login, string password)
     {
-      //  TODO usar el metodo GetUserPasswordInternal para validar la password
+            //  TODO usar el metodo GetUserPasswordInternal para validar la password
+            string clave = GetUserPasswordInternal(login);
+      if (clave == password)
+            {
+                Usuario user = new Usuario();
+                user = OMBContext.DB.Usuarios.Where(u => u.Login == login).FirstOrDefault();
+                return user;
+            }
       //  TODO setear los datos de ultimo login correcto o no, validar en la DB
       //  return null;
       return new Usuario();
@@ -92,10 +99,18 @@ namespace Servicios
     /// <returns></returns>
     private bool ValidarUsuario(Usuario user)
     {
-      //  TODO verificar que el login no este repetido
-      // HOla
+            //  TODO verificar que el login no este repetido
+            var valida = OMBContext.DB.Empleados.Where(e => e.Legajo == user.Empleado.Legajo).Count();
+            if (valida != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            } 
       //  TODO Asegurar que no se generen dos usuarios para un mismo Empleado
-      return true;
+      
     }
 
 
